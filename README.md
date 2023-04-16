@@ -15,23 +15,18 @@
 
 ## Summary
 
-High level architecture diagram for the peoposed model
+High level architecture diagram for the proposed model
 
 ![Model archi](https://user-images.githubusercontent.com/87017018/232292203-bceafa8a-4b85-49f6-88d1-ef7e7000c925.jpg)
 
 
 ## Description
 
-Detailed description of your project.
 
-- Project phases
-- Diagrams
-- Approches
 
 ## More references
 
-1. Reference
-2. Link
+
 
 ---
 
