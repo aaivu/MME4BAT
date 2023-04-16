@@ -4,23 +4,21 @@
 
 
 
-- <b>Project Lead(s) / Mentor(s)</b>
-    1. Name (talk forum profile link)
-    2. Name (talk forum profile link)
-- <b>Contributor(s)</b>
-    1. Name (talk forum profile link)
-    2. Name (talk forum profile link)
-
-<b>Useful Links </b>
-
-- GitHub : <project_url>
-- Talk Forum : <talk_forum_link>
+- <b>Project Lead / Mentor</b>
+    1. Dr.T. Uthayasanker
+    
+- <b>Contributor </b>
+    1. R. Shiveswarran
+   
 
 ---
 
 ## Summary
 
-two - three paragraphs about your project.
+High level architecture diagram for the peoposed model
+
+![Model archi](https://user-images.githubusercontent.com/87017018/232292203-bceafa8a-4b85-49f6-88d1-ef7e7000c925.jpg)
+
 
 ## Description
 
