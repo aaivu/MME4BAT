@@ -224,43 +224,13 @@ def build_model(input_timesteps, output_timesteps, num_links):
                          return_sequences = True))
     
     model.add(TimeDistributed(Dense(units=1, name = 'dense_1', activation = 'relu')))
-    model.add(TimeDistributed(Dense(units=1, name = 'dense_1', activation = 'relu')))
-    #model.add(Dense(units=1, name = 'dense_2'))
-
-    optimizer = RMSprop(lr=0.0001, rho=0.9, epsilon=1e-08, decay=0.9)
-    model.compile(loss = "mse", optimizer = optimizer)
-    return model
-
-def build_model(input_timesteps, output_timesteps, num_links):
-    model = Sequential()
-    #model.add(BatchNormalization(name = 'batch_norm_0', input_shape = (input_timesteps, num_links, 1, 1)))
-    model.add(ConvLSTM2D(name ='conv_lstm_1',
-                         filters = 64, kernel_size = (10, 1),                       
-                         padding = 'same', 
-                         return_sequences = True))
-    
-    model.add(Dropout(0.2, name = 'dropout_1'))
-    #model.add(BatchNormalization(name = 'batch_norm_1'))
-    
-    model.add(Flatten())
-    model.add(RepeatVector(output_timesteps))
-    model.add(Reshape((output_timesteps, num_links, 1, 64)))
-    
-    model.add(ConvLSTM2D(name ='conv_lstm_2',
-                         filters = 64, kernel_size = (10, 1), 
-                         padding='same',
-                         return_sequences = True))
-    
-    model.add(Dropout(0.1, name = 'dropout_2'))
-
-    
-    model.add(TimeDistributed(Dense(units=1, name = 'dense_1', activation = 'relu')))
     #model.add(TimeDistributed(Dense(units=1, name = 'dense_1', activation = 'relu')))
     #model.add(Dense(units=1, name = 'dense_2'))
 
     optimizer = RMSprop(lr=0.0001, rho=0.9, epsilon=1e-08, decay=0.9)
     model.compile(loss = "mse", optimizer = optimizer)
     return model
+
 
 def info(msg):
     print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " " + msg)
@@ -339,17 +309,11 @@ for t in range(preds):
     error_naive_total_t = (Y_naive_total_t - Y_true_total_t)
     error_lstm_total_t = (Y_pred_total_t - Y_true_total_t)
 
-    mae_ha = np.mean(np.abs(error_naive_total_t))
-    rmse_ha = np.sqrt(np.mean((error_naive_total_t)**2))
-    mape_ha = np.mean(np.abs(error_naive_total_t) / Y_true_total_t) * 100
-
     mae_lstm = np.mean(np.abs(error_lstm_total_t))
     rmse_lstm = np.sqrt(np.mean((error_lstm_total_t)**2))
     mape_lstm = np.mean(np.abs(error_lstm_total_t) / Y_true_total_t) * 100
 
-    info("- t + %d - HA       - MAE: %5.2f - RMSE: %5.2f - MAPE: %5.2f" % (t + 1, mae_ha, rmse_ha, mape_ha))
     info("- t + %d - ConvLSTM - MAE: %5.2f - RMSE: %5.2f - MAPE: %5.2f" % (t + 1, mae_lstm, rmse_lstm, mape_lstm))
-    info("- t + %d - *        - MAE: %5.2f - RMSE: %5.2f - MAPE: %5.2f" % (t + 1, mae_lstm - mae_ha, rmse_lstm - rmse_ha, mape_lstm - mape_ha))
 
 model.summary()
 
@@ -372,18 +336,6 @@ output['Datetime']=output.index
 
 output
 
-def download_csv(data,filename):
-  filename= filename + '.csv'
-  data.to_csv(filename, encoding = 'utf-8-sig',index= False)
-  files.download(filename)
-
-download_csv(output,'cnn_running_1')
-
-means
-
-means['Datetime']=means.index
-
-download_csv(means,'HA')
 
 """Out of Fold Training"""
 
